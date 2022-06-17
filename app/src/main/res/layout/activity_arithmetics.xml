@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.drawerlayout.widget.DrawerLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,9 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include
-            layout="@layout/tool_bar"
-            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="10pt"
@@ -25,22 +20,19 @@
             android:id="@+id/text2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="사칙연산계산기"
+            android:text="@string/title"
             android:textAlignment="center"
-            android:fontFamily="@font/malgun"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/edit_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:height="50dp"
-            android:fontFamily="@font/lab"
             android:gravity="right"
             android:inputType="numberDecimal"
             android:maxLength="10"
-            android:textSize="20pt"
-            android:text="" />
+            android:textSize="20pt" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="2pt"
@@ -57,8 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:height="40dp"
-                android:text="" />
+                android:height="40dp" />
 
             <TextView
                 android:id="@+id/edit_arith"
@@ -66,8 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:height="40dp"
-                android:gravity="right"
-                android:text="" />
+                android:gravity="right" />
 
         </LinearLayout>
 
@@ -88,7 +78,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="←" />
+                    android:text="@string/back" />
 
                 <Button
                     android:id="@+id/sinBtn"
@@ -97,7 +87,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="sin"
+                    android:text="@string/sin"
                     android:textAllCaps="false" />
 
                 <Button
@@ -107,7 +97,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="x²" />
+                    android:text="@string/square" />
 
                 <Button
                     android:id="@+id/numBtn7"
@@ -116,7 +106,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="7" />
+                    android:text="@string/seven" />
 
                 <Button
                     android:id="@+id/numBtn4"
@@ -125,7 +115,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="4" />
+                    android:text="@string/four" />
 
                 <Button
                     android:id="@+id/numBtn1"
@@ -134,7 +124,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="1" />
+                    android:text="@string/one" />
 
                 <Button
                     android:id="@+id/numBtn0"
@@ -143,7 +133,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="0" />
+                    android:text="@string/zero" />
             </LinearLayout>
 
             <LinearLayout
@@ -159,7 +149,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="C" />
+                    android:text="@string/c" />
 
                 <Button
                     android:id="@+id/cosBtn"
@@ -168,7 +158,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="cos"
+                    android:text="@string/cos"
                     android:textAllCaps="false" />
 
                 <Button
@@ -178,7 +168,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="√x"
+                    android:text="@string/root"
                     android:textAllCaps="false" />
 
                 <Button
@@ -188,7 +178,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="8" />
+                    android:text="@string/eight" />
 
                 <Button
                     android:id="@+id/numBtn5"
@@ -197,7 +187,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="5" />
+                    android:text="@string/five" />
 
                 <Button
                     android:id="@+id/numBtn2"
@@ -206,7 +196,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="2" />
+                    android:text="@string/two" />
 
                 <Button
                     android:id="@+id/dot"
@@ -215,7 +205,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="." />
+                    android:text="@string/point" />
             </LinearLayout>
 
             <LinearLayout
@@ -231,7 +221,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="sort" />
+                    android:text="@string/sort" />
 
                 <Button
                     android:id="@+id/tanBtn"
@@ -240,7 +230,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="tan"
+                    android:text="@string/tan"
                     android:textAllCaps="false" />
 
                 <Button
@@ -250,7 +240,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="( )"
+                    android:text="@string/bracket"
                     android:textAllCaps="false" />
 
                 <Button
@@ -260,7 +250,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="9" />
+                    android:text="@string/nine" />
 
                 <Button
                     android:id="@+id/numBtn6"
@@ -269,7 +259,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="6" />
+                    android:text="@string/six" />
 
                 <Button
                     android:id="@+id/numBtn3"
@@ -278,7 +268,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="3" />
+                    android:text="@string/three" />
 
                 <Button
                     android:id="@+id/equal"
@@ -287,7 +277,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="=" />
+                    android:text="@string/equ" />
             </LinearLayout>
 
             <LinearLayout
@@ -310,7 +300,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="Graph"/>/>
+                    android:text="@string/graph"/>
 
                 <Button
                     android:id="@+id/binary"
@@ -319,7 +309,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="Binary"/>
+                    android:text="@string/binary"/>
 
                 <Button
                     android:id="@+id/addBtn"
@@ -328,7 +318,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="+" />
+                    android:text="@string/plu" />
 
                 <Button
                     android:id="@+id/subBtn"
@@ -337,7 +327,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="-" />
+                    android:text="@string/minus" />
 
                 <Button
                     android:id="@+id/mulBtn"
@@ -346,7 +336,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="*" />
+                    android:text="@string/mul" />
 
                 <Button
                     android:id="@+id/divBtn"
@@ -355,16 +345,8 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector"
-                    android:text="/" />
+                    android:text="@string/divide" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:id="@+id/navigation_view"
-        android:layout_gravity="left"
-        app:menu="@menu/tool_bar_menu"/>
-</androidx.drawerlayout.widget.DrawerLayout>
+</RelativeLayout>

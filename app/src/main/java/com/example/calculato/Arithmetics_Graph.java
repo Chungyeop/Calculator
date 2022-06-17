@@ -39,14 +39,6 @@ public class Arithmetics_Graph extends AppCompatActivity implements View.OnClick
         mainToolBar = (Toolbar) findViewById(R.id.main_tool_bar);
         setSupportActionBar(mainToolBar);
 
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, mainToolBar, R.string.drawer_open, R.string.drawer_close);
-        drawerLayout.addDrawerListener(drawerToggle);
-        drawerToggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        MenuBarEvent menuBarEvent = new MenuBarEvent(this);
-        navigationView.setNavigationItemSelectedListener(menuBarEvent);
-
         empty1 = findViewById(R.id.empty1);
         empty2 = findViewById(R.id.empty2);
         empty3 = findViewById(R.id.empty3);

@@ -37,25 +37,10 @@ public class Arithmetics extends AppCompatActivity {  //터치따로
 
     private Button addBtn, subBtn, mulBtn, divBtn, clear, bracket, backBtn, dot, equal, sinBtn, cosBtn, tanBtn, binary, sqr, root, sort, graph;
 
-    private Toolbar mainToolBar;
-
-    private ActionBarDrawerToggle drawerToggle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arithmetics);
-        // toolbar
-        mainToolBar = (Toolbar) findViewById(R.id.main_tool_bar);
-        setSupportActionBar(mainToolBar);
-
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, mainToolBar, R.string.drawer_open, R.string.drawer_close);
-        drawerLayout.addDrawerListener(drawerToggle);
-        drawerToggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        MenuBarEvent menuBarEvent = new MenuBarEvent(this);
-        navigationView.setNavigationItemSelectedListener(menuBarEvent);
 
         calculateHelper = new com.example.calculato.CalculateHelper();
 

@@ -56,18 +56,6 @@ public class DateArithmetics extends AppCompatActivity implements View.OnClickLi
         resultView = (TextView)findViewById(R.id.resultView);
         resultView.setText("0Day");
 
-        // toolbar 와 drawerLayout 세팅
-        mainToolBar = (Toolbar)findViewById(R.id.main_tool_bar);
-        setSupportActionBar(mainToolBar);
-
-        DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, mainToolBar, R.string.drawer_open, R.string.drawer_close);
-        drawerLayout.addDrawerListener(drawerToggle);
-        drawerToggle.syncState();
-        NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
-        MenuBarEvent menuBarEvent = new MenuBarEvent(this);
-        navigationView.setNavigationItemSelectedListener(menuBarEvent);
-
         // 클릭 이벤트
         Button btnStart = (Button)findViewById(R.id.btn_date_start);
         Button btnLast = (Button)findViewById(R.id.btn_date_last);

@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:text="return" />
+                android:text="@string/ret" />
 
         </LinearLayout>
 
@@ -41,15 +41,13 @@
                 android:id="@+id/functionOne"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="" />
+                android:layout_weight="4" />
 
             <TextView
                 android:id="@+id/emptyOne"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="" />
+                android:layout_weight="4" />
         </LinearLayout>
 
         <LinearLayout
@@ -61,15 +59,13 @@
                 android:id="@+id/functionTwo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="" />
+                android:layout_weight="4" />
 
             <TextView
                 android:id="@+id/emptyTwo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="" />
+                android:layout_weight="4" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,15 +77,13 @@
                 android:id="@+id/functionThree"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="" />
+                android:layout_weight="4" />
 
             <TextView
                 android:id="@+id/emptyThree"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:text="" />
+                android:layout_weight="4" />
         </LinearLayout>
 
     </LinearLayout>
