@@ -14,16 +14,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import com.google.android.material.navigation.NavigationView;
 
 public class Arithmetics_Graph extends AppCompatActivity implements View.OnClickListener {
     private final String TAG = "Test";
     private final int REQUEST_CODE = 1000;
     private TextView equation1, equation2, equation3, empty1, empty2, empty3;           // 함수 입력을 위한 equation, 입력이 되어 있는 가를 확인할 empty
     private Button numBtn0, numBtn1, numBtn2, numBtn3, numBtn4, numBtn5, numBtn6, numBtn7, numBtn8, numBtn9,
-            dotBtn, equalBtn, divBtn, mulBtn, subBtn, addBtn, sqrBtn, rootBtn, bracketBtn, sinBtn, cosBtn, tanBtn,
+            equalBtn, divBtn, mulBtn, subBtn, addBtn, sinBtn, cosBtn, tanBtn,
             xBtn, yBtn, backBtn, clearBtn, graphBtn, homeBtn;
     private Toolbar mainToolBar;
     private ActionBarDrawerToggle drawerToggle;
@@ -60,8 +57,6 @@ public class Arithmetics_Graph extends AppCompatActivity implements View.OnClick
         mulBtn = findViewById(R.id.mulBtn);
         subBtn = findViewById(R.id.subBtn);
         addBtn = findViewById(R.id.addBtn);
-        sqrBtn = findViewById(R.id.sqrBtn);
-        rootBtn = findViewById(R.id.rootBtn);
         sinBtn = findViewById(R.id.sinBtn);
         cosBtn = findViewById(R.id.cosBtn);
         tanBtn = findViewById(R.id.tanBtn);
@@ -87,8 +82,6 @@ public class Arithmetics_Graph extends AppCompatActivity implements View.OnClick
         mulBtn.setOnClickListener(this);
         subBtn.setOnClickListener(this);
         addBtn.setOnClickListener(this);
-        sqrBtn.setOnClickListener(this);
-        rootBtn.setOnClickListener(this);
         sinBtn.setOnClickListener(this);
         cosBtn.setOnClickListener(this);
         tanBtn.setOnClickListener(this);
@@ -272,28 +265,6 @@ public class Arithmetics_Graph extends AppCompatActivity implements View.OnClick
                     break;
                 } else {
                     equation3.append("+");
-                    break;
-                }
-            case R.id.sqrBtn:
-                if (empty1.getText().toString().equals("")) {
-                    equation1.append("x²");
-                    break;
-                } else if (empty2.getText().toString().equals("")) {
-                    equation2.append("x²");
-                    break;
-                } else {
-                    equation3.append("x²");
-                    break;
-                }
-            case R.id.rootBtn:
-                if (empty1.getText().toString().equals("")) {
-                    equation1.append("√x");
-                    break;
-                } else if (empty2.getText().toString().equals("")) {
-                    equation2.append("√x");
-                    break;
-                } else {
-                    equation3.append("√x");
                     break;
                 }
             case R.id.sinBtn:

@@ -10,12 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import com.google.android.material.navigation.NavigationView;
 
 
 public class Arithmetics extends AppCompatActivity {  //터치따로
@@ -35,7 +30,7 @@ public class Arithmetics extends AppCompatActivity {  //터치따로
 
     Button[] button = new Button[10];                               //Button
 
-    private Button addBtn, subBtn, mulBtn, divBtn, clear, bracket, backBtn, dot, equal, sinBtn, cosBtn, tanBtn, binary, sqr, root, sort, graph;
+    private Button addBtn, subBtn, mulBtn, divBtn, clear, bracket, backBtn, dot, equal, sinBtn, cosBtn, tanBtn, binary, sqr, root, sort, graph, dateCal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +83,7 @@ public class Arithmetics extends AppCompatActivity {  //터치따로
         backBtn = findViewById(R.id.backBtn);
         dot = findViewById(R.id.dot);
         graph = findViewById(R.id.graph);
+        dateCal = findViewById(R.id.dateCal);
         sinBtn = findViewById(R.id.sinBtn);
         cosBtn = findViewById(R.id.cosBtn);
         tanBtn = findViewById(R.id.tanBtn);
@@ -124,6 +120,7 @@ public class Arithmetics extends AppCompatActivity {  //터치따로
         backBtn.setOnClickListener(markClickListener);
         dot.setOnClickListener(markClickListener);
         graph.setOnClickListener(markClickListener);
+        dateCal.setOnClickListener(markClickListener);
         sinBtn.setOnClickListener(markClickListener);
         cosBtn.setOnClickListener(markClickListener);
         tanBtn.setOnClickListener(markClickListener);
@@ -184,7 +181,7 @@ public class Arithmetics extends AppCompatActivity {  //터치따로
     private final Button.OnClickListener markClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(!(view.getId() == R.id.backBtn ||view.getId() == R.id.clear||view.getId() == R.id.binary||view.getId() == R.id.graph)) {
+            if(!(view.getId() == R.id.backBtn ||view.getId() == R.id.clear||view.getId() == R.id.binary||view.getId() == R.id.graph||view.getId() == R.id.dateCal)) {
                 if (!edit_process.getText().toString().equals("")) {
                     if (edit_process.getText().toString().charAt(0) == 's'
                             || edit_process.getText().toString().charAt(0) == 't'
@@ -195,7 +192,7 @@ public class Arithmetics extends AppCompatActivity {  //터치따로
                 }
             }
             if(edit_process.getText().toString().equals("")){
-                if(!(view.getId() == R.id.subBtn ||view.getId() == R.id.bracket ||view.getId() == R.id.binary||view.getId() == R.id.graph)) {
+                if(!(view.getId() == R.id.subBtn ||view.getId() == R.id.bracket ||view.getId() == R.id.binary||view.getId() == R.id.graph||view.getId() == R.id.dateCal)) {
                     return;
                 }
             }
@@ -416,6 +413,12 @@ public class Arithmetics extends AppCompatActivity {  //터치따로
                     Intent intentGra = new Intent(getApplicationContext(), com.example.calculato.Arithmetics_Graph.class);
                     intentGra.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intentGra);
+                    break;
+
+                case R.id.dateCal:
+                    Intent intentDate = new Intent(getApplicationContext(), com.example.calculato.DateArithmetics.class);
+                    intentDate.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intentDate);
                     break;
             }
         }

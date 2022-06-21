@@ -3,7 +3,7 @@
     <string name="hello_world">Hello World</string>
     <string name="drawer_open">menu open</string>
     <string name="drawer_close">menu close</string>
-    <string name="title">사칙연산계산기</string>
+    <string name="title">Calculator</string>
     <string name="back">←</string>
     <string name="and">AND</string>
     <string name="one">1</string>
@@ -47,4 +47,13 @@
     <string name="function">Function</string>
     <string name="x">X</string>
     <string name="y">Y</string>
+    <string name="graph_activity">Graph Activity</string>
+    <string name="date">Date</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="date_calculator">Date Calculator</string>
+    <string name="_1st_date_input">1st Date Input</string>
+    <string name="_2nd_date_input">2nd Date Input</string>
+    <string name="date_difference">Date Difference</string>
 </resources>

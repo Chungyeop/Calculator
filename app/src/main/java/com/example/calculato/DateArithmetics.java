@@ -1,19 +1,13 @@
 package com.example.calculato;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import com.google.android.material.navigation.NavigationView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,17 +16,15 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class DateArithmetics extends AppCompatActivity implements View.OnClickListener {
+public class DateArithmetics extends Activity implements View.OnClickListener {
 
-    private Toolbar mainToolBar;
-    private ActionBarDrawerToggle drawerToggle;
     private TextView startView;
     private TextView lastView;
     private TextView resultView;
 
     // 안드로이드 os 버전 때문에 발생하는 LocalDate 에러를 해결하는 Annotation
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date);
 
@@ -47,7 +39,7 @@ public class DateArithmetics extends AppCompatActivity implements View.OnClickLi
         // 날짜 스트링으로 변환
         String startDay = simpleDateFormat.format(today);
         String lastDay = simpleDateFormat.format(tomorrow);
-        
+
         // 처음화면에 날짜를 세팅
         startView = (TextView)findViewById(R.id.startDay);
         startView.setText(startDay);
@@ -59,8 +51,18 @@ public class DateArithmetics extends AppCompatActivity implements View.OnClickLi
         // 클릭 이벤트
         Button btnStart = (Button)findViewById(R.id.btn_date_start);
         Button btnLast = (Button)findViewById(R.id.btn_date_last);
+        Button returnBtn = (Button) findViewById(R.id.returnBtn);
+
+        returnBtn.setOnClickListener(this);
         btnStart.setOnClickListener(this);
         btnLast.setOnClickListener(this);
+    }
+
+    // Activity 종료 시 효과 제거
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 
     @Override
@@ -68,6 +70,11 @@ public class DateArithmetics extends AppCompatActivity implements View.OnClickLi
         DatePickerDialog datePickerDialog = null;
         int[] intArr = null;
         switch (view.getId()) {
+            case R.id.returnBtn:
+                Intent intent = new Intent(getApplicationContext(), com.example.calculato.Arithmetics.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+
             case R.id.btn_date_start:
                 String startDateStr = startView.getText().toString();
                 intArr = setDate(startDateStr);
@@ -76,8 +83,22 @@ public class DateArithmetics extends AppCompatActivity implements View.OnClickLi
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                             // 월이 0부터 시작하므로 +1 해준다(ex: 1월달일 경우 값이 0으로 들어온다)
-                            month += 1;
-                            startView.setText(year + "-" + month + "-" + day);
+                            month += 1;String monthString = String.valueOf(month);
+                            String dayString = String.valueOf(day);
+
+                            if(month < 10) {
+                                monthString = "0" + String.valueOf(month);
+                            } else {
+                                monthString = String.valueOf(month);
+                            }
+
+                            if(day < 10) {
+                                dayString = "0" + String.valueOf(day);
+                            } else {
+                                dayString = String.valueOf(day);
+                            }
+
+                            startView.setText(year + "-" + monthString + "-" + dayString);
                             long resultDay = calculatorDate(startView.getText().toString(), lastView.getText().toString());
                             if(resultDay != -1) {
                                 resultView.setText(resultDay+"Day");
@@ -97,7 +118,22 @@ public class DateArithmetics extends AppCompatActivity implements View.OnClickLi
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                             // 월이 0부터 시작하므로 +1 해준다(ex: 1월달일 경우 값이 0으로 들어온다)
                             month+=1;
-                            lastView.setText(year + "-" + month + "-" + day);
+                            String monthString = String.valueOf(month);
+                            String dayString = String.valueOf(day);
+
+                            if(month < 10) {
+                                monthString = "0" + String.valueOf(month);
+                            } else {
+                                monthString = String.valueOf(month);
+                            }
+
+                            if(day < 10) {
+                                dayString = "0" + String.valueOf(day);
+                            } else {
+                                dayString = String.valueOf(day);
+                            }
+
+                            lastView.setText(year + "-" + monthString + "-" + dayString);
                             long resultDay = calculatorDate(startView.getText().toString(), lastView.getText().toString());
                             if(resultDay != -1) {
                                 resultView.setText(resultDay+"Day");
