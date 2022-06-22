@@ -9,4 +9,17 @@
         <item name="android:background">?android:attr/colorBackground</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
+
+    <style name="MenuBtnTitleTextStyle">
+        <item name="android:layerType">software</item>
+        <item name="android:textSize">@dimen/tab_widget_text_size</item>
+        <item name="android:textScaleX">0.87</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:shadowColor">@color/title_normal_text_shadow_color</item>
+        <item name="android:shadowDy">1.0</item>
+        <item name="android:shadowRadius">1.0</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
 </resources>

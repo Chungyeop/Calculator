@@ -1,12 +1,15 @@
 package com.example.calculato;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -16,11 +19,16 @@ import java.util.Date;
 import java.util.Locale;
 
 
+
 public class DateArithmetics extends Activity implements View.OnClickListener {
+
+    private final static String TAG = "Date";
+    private final boolean LOGD = true;
 
     private TextView startView;
     private TextView lastView;
     private TextView resultView;
+    private ImageButton mBackBtn = null;
 
     // 안드로이드 os 버전 때문에 발생하는 LocalDate 에러를 해결하는 Annotation
     @Override
@@ -51,11 +59,22 @@ public class DateArithmetics extends Activity implements View.OnClickListener {
         // 클릭 이벤트
         Button btnStart = (Button)findViewById(R.id.btn_date_start);
         Button btnLast = (Button)findViewById(R.id.btn_date_last);
-        Button returnBtn = (Button) findViewById(R.id.returnBtn);
+        ImageButton returnBtn = (ImageButton) findViewById(R.id.back_btn);
 
         returnBtn.setOnClickListener(this);
         btnStart.setOnClickListener(this);
         btnLast.setOnClickListener(this);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     // Activity 종료 시 효과 제거
@@ -66,14 +85,24 @@ public class DateArithmetics extends Activity implements View.OnClickListener {
     }
 
     @Override
+    protected void onStop() {
+        finish();
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public void onClick(View view) {
         DatePickerDialog datePickerDialog = null;
         int[] intArr = null;
         switch (view.getId()) {
-            case R.id.returnBtn:
-                Intent intent = new Intent(getApplicationContext(), com.example.calculato.Arithmetics.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
+            case R.id.back_btn:
+                onBackPressed();
+                break;
 
             case R.id.btn_date_start:
                 String startDateStr = startView.getText().toString();
@@ -149,7 +178,26 @@ public class DateArithmetics extends Activity implements View.OnClickListener {
             datePickerDialog.show();
         }
     }
-    // 현재 표시된 날짜를 가져와서 int 배열로 만드는 메서드
+    @Override
+    public void onBackPressed() {
+        Log.i(TAG, "onBackPressed()");
+        moveToHome();
+    }
+
+    private void moveToHome() {
+        if (LOGD)
+            Log.d(TAG, "moveToHome()");
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        finish();
+
+    }
+
+        // 현재 표시된 날짜를 가져와서 int 배열로 만드는 메서드
     private int[] setDate(String dateStr) {
         int[] resultArr = new int[3];
         if(dateStr != null) {

@@ -5,6 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_app"
     android:fitsSystemWindows="true"
     tools:context=".Arithmetics">
 
@@ -12,6 +13,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settings_menu_bar_widget_height"
+            android:splitMotionEvents="false">
+
+
+
+            <TextView
+                android:id="@+id/list_title"
+                style="@style/MenuBtnTitleTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center" />
+
+            <ImageButton
+                android:layout_width="@dimen/settings_menu_bar_back_btn_width"
+                android:layout_height="@dimen/settings_menu_bar_widget_height"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/back_btn"
+                android:background="@drawable/title_back_btn_selector" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,11 +45,18 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:paddingStart="20dp"
                 android:text="@string/_1st_date_input"
                 android:layout_weight="1"
+                android:textColor="@color/white"
                 android:textSize="40sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2pt"
+                android:background="@color/line_app" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,6 +71,7 @@
                     android:layout_weight="1"
                     android:paddingStart="100sp"
                     android:height="55dp"
+                    android:textColor="@color/white"
                     android:textAlignment="center"
                     android:textSize="30sp" />
 
@@ -47,8 +79,8 @@
                     android:id="@+id/btn_date_start"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:background="@drawable/ic_date" />
+                    android:layout_weight="8"
+                    android:background="@drawable/calendar_input" />
 
             </LinearLayout>
 
@@ -57,9 +89,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingStart="20dp"
+                android:textColor="@color/white"
                 android:text="@string/_2nd_date_input"
                 android:textSize="40sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2pt"
+                android:background="@color/line_app" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,6 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="100sp"
+                    android:textColor="@color/white"
                     android:height="55dp"
                     android:textAlignment="center"
                     android:textSize="30sp" />
@@ -81,8 +120,8 @@
                     android:id="@+id/btn_date_last"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:background="@drawable/ic_date"/>
+                    android:layout_weight="8"
+                    android:background="@drawable/calendar_input"/>
 
             </LinearLayout>
 
@@ -92,8 +131,14 @@
                 android:layout_weight="1"
                 android:paddingStart="20dp"
                 android:text="@string/date_difference"
+                android:textColor="@color/white"
                 android:textSize="40sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2pt"
+                android:background="@color/line_app" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,25 +152,12 @@
                     android:layout_height="wrap_content"
                     android:height="55dp"
                     android:textAlignment="center"
+                    android:textColor="@color/white"
                     android:paddingStart="100sp"
                     android:textSize="30sp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/returnBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/ret"
-                    android:textSize="30sp" />
-
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

@@ -5,6 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_app"
     android:fitsSystemWindows="true"
     tools:context=".Arithmetics">
 
@@ -12,15 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/title_bin"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textSize="30sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -115,17 +107,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:height="40dp"
-                android:text="" />
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:height="40dp"/>
 
             <TextView
                 android:id="@+id/operator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/white"
                 android:height="40dp"
-                android:gravity="end"
-                android:text="" />
+                android:gravity="end"/>
 
         </LinearLayout>
 
@@ -146,6 +146,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/back"
                     tools:ignore="NestedWeights" />
@@ -156,6 +157,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/and" />
 
@@ -165,6 +167,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/one" />
 
@@ -174,6 +177,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/zero" />
             </LinearLayout>
@@ -190,6 +194,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/left"
                     tools:ignore="NestedWeights" />
@@ -200,6 +205,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/or" />
 
@@ -210,6 +216,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/mul" />
 
@@ -219,6 +226,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/equ" />
             </LinearLayout>
@@ -235,6 +243,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/right"
                     tools:ignore="NestedWeights" />
@@ -245,6 +254,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/xor" />
 
@@ -254,6 +264,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/plu" />
 
@@ -263,6 +274,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/minus" />
             </LinearLayout>
@@ -279,6 +291,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/c"
                     tools:ignore="NestedWeights" />
@@ -289,6 +302,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/home" />
 
@@ -298,6 +312,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/divide" />
 
@@ -307,6 +322,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/remain" />
 

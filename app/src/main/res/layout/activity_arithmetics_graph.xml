@@ -4,6 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_app"
     android:fitsSystemWindows="true"
     tools:context=".Arithmetics">
 
@@ -14,19 +15,6 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="2pt"
-            android:background="@color/teal_200" />
-
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/graph_activity"
-            android:textAlignment="center"
-            android:textSize="30sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -34,10 +22,11 @@
                 android:id="@+id/function1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity=""
+                android:layout_gravity="center"
                 android:layout_weight="2"
                 android:height="50dp"
                 android:text="@string/function"
+                android:textColor="@color/white"
                 android:textSize="15pt" />
 
             <TextView
@@ -45,9 +34,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_gravity="center"
                 android:height="50dp"
                 android:clickable="true"
                 android:focusable="true"
+                android:textColor="@color/white"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:gravity="end"
                 android:maxLength="10"
@@ -65,7 +56,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="2pt"
-            android:background="@color/teal_200" />
+            android:background="@color/line_app" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,9 +67,10 @@
                 android:id="@+id/function2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity=""
+                android:layout_gravity="center"
                 android:layout_weight="2"
                 android:height="50dp"
+                android:textColor="@color/white"
                 android:text="@string/function"
                 android:textSize="15pt" />
 
@@ -87,9 +79,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_gravity="center"
                 android:height="50dp"
                 android:clickable="true"
                 android:focusable="true"
+                android:textColor="@color/white"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:gravity="end"
                 android:maxLength="10"
@@ -107,7 +101,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="2pt"
-            android:background="@color/teal_200" />
+            android:background="@color/line_app" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -118,9 +112,10 @@
                 android:id="@+id/function3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity=""
+                android:layout_gravity="center"
                 android:layout_weight="2"
                 android:height="50dp"
+                android:textColor="@color/white"
                 android:text="@string/function"
                 android:textSize="15pt" />
 
@@ -129,9 +124,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_gravity="center"
                 android:height="50dp"
                 android:clickable="true"
                 android:focusable="true"
+                android:textColor="@color/white"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:gravity="end"
                 android:maxLength="10"
@@ -149,7 +146,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="2pt"
-            android:background="@color/teal_200" />
+            android:background="@color/line_app" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -167,6 +164,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/back" />
 
@@ -176,6 +174,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/y" />
 
@@ -185,6 +184,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/tan"
                     android:textAllCaps="false" />
@@ -195,6 +195,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/cos"
                     android:textAllCaps="false" />
@@ -205,6 +206,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/sin"
                     android:textAllCaps="false" />
@@ -222,6 +224,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/c" />
 
@@ -231,6 +234,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/seven" />
 
@@ -240,6 +244,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/four" />
 
@@ -249,6 +254,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/one" />
 
@@ -258,6 +264,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/zero" />
             </LinearLayout>
@@ -274,6 +281,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/graph" />
 
@@ -283,6 +291,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/eight" />
 
@@ -292,6 +301,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/five" />
 
@@ -301,6 +311,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/two" />
 
@@ -310,6 +321,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:enabled="false"
                     android:text="@string/x" />
@@ -328,6 +340,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/home" />
 
@@ -337,6 +350,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/nine" />
 
@@ -346,6 +360,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/six" />
 
@@ -355,6 +370,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/three" />
 
@@ -364,6 +380,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:enabled="false"
                     android:text="@string/equ" />
@@ -389,6 +406,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/plu" />
 
@@ -398,6 +416,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/minus" />
 
@@ -407,6 +426,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/mul" />
 
@@ -416,6 +436,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/divide" />
 

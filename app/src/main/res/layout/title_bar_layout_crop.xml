@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/settings_menu_bar_widget_height"
+    android:splitMotionEvents="false">
+    
+    <RelativeLayout
+        android:layout_width="680dp"
+        android:layout_height="@dimen/settings_menu_bar_widget_height"
+        android:background="@drawable/tab_widget_indicator_selector" >
+        
+        <ImageView
+            android:layout_width="@dimen/settings_menu_bar_separate_line_width"
+            android:layout_height="@dimen/settings_menu_bar_separate_line_height"
+            android:background="@drawable/separate_line"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+        
+    </RelativeLayout>
+    
+    <TextView 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list_title"
+            android:gravity="center"
+            style="@style/MenuBtnTitleTextStyle" />
+    
+    <ImageButton 
+        android:layout_width="@dimen/settings_menu_bar_back_btn_width"
+        android:layout_height="@dimen/settings_menu_bar_widget_height"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/back_btn"
+        android:background="@drawable/title_back_btn_selector" />
+
+</RelativeLayout>

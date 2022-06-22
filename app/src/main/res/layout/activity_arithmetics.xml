@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_app"
-    tools:context=".Arithmetics"
-    android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
-    >
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".Arithmetics">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -21,6 +20,8 @@
             android:height="50dp"
             android:gravity="right"
             android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/white"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:textSize="20pt" />
@@ -40,15 +41,26 @@
                 android:id="@+id/edit_process"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
                 android:layout_weight="1"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
                 android:height="40dp" />
 
             <TextView
                 android:id="@+id/edit_arith"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
                 android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="@color/white"
                 android:height="40dp"
+                android:textSize="18sp"
                 android:gravity="right" />
 
         </LinearLayout>
@@ -64,76 +76,7 @@
             android:layout_height="match_parent"
             android:layout_weight="150">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/backBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/white"
-                    android:background="@drawable/btn_color_selector"
-                    android:text="@string/back" />
-
-                <Button
-                    android:id="@+id/tanBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/white"
-                    android:background="@drawable/btn_color_selector"
-                    android:text="@string/tan"
-                    android:textAllCaps="false" />
-
-                <Button
-                    android:id="@+id/cosBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/white"
-                    android:background="@drawable/btn_color_selector"
-                    android:text="@string/cos"
-                    android:textAllCaps="false" />
-
-                <Button
-                    android:id="@+id/sinBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/white"
-                    android:background="@drawable/btn_color_selector"
-                    android:text="@string/sin"
-                    android:textAllCaps="false" />
-
-                <Button
-                    android:id="@+id/root"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/white"
-                    android:background="@drawable/btn_color_selector"
-                    android:text="@string/root"
-                    android:textAllCaps="false" />
-
-                <Button
-                    android:id="@+id/sqr"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/white"
-                    android:background="@drawable/btn_color_selector"
-                    android:text="@string/square" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -142,14 +85,14 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/clear"
+                    android:id="@+id/binary"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
-                    android:text="@string/c" />
+                    android:text="@string/binary"/>
 
                 <Button
                     android:id="@+id/bracket"
@@ -278,13 +221,6 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_color_selector" />
-
-                <Button
                     android:id="@+id/graph"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -293,6 +229,16 @@
                     android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
                     android:text="@string/graph"/>
+
+                <Button
+                    android:id="@+id/backBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_color_selector"
+                    android:text="@string/back" />
 
                 <Button
                     android:id="@+id/numBtn9"
@@ -348,16 +294,15 @@
                     android:layout_weight="1"
                     android:background="@drawable/btn_color_selector" />
 
-
                 <Button
-                    android:id="@+id/binary"
+                    android:id="@+id/clear"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:background="@drawable/btn_color_selector"
-                    android:text="@string/binary"/>
+                    android:text="@string/c" />
 
                 <Button
                     android:id="@+id/addBtn"

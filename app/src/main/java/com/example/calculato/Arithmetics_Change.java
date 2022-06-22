@@ -1,32 +1,30 @@
 package com.example.calculato;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
+public class Arithmetics_Change extends Activity implements View.OnClickListener {
 
-import com.google.android.material.navigation.NavigationView;
+    private final static String TAG = "Arithmetics_Change";
+    private final boolean LOGD = true;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-public class Arithmetics_Change extends AppCompatActivity implements View.OnClickListener {
     // 계산 결과 값 Image 표현
     private final ImageView[] binaryView = new ImageView[10];
 
@@ -35,7 +33,10 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
 
     // 연산 과정과 연산자 확인
     private TextView process, operator;
-    private Button numBtn0, numBtn1, addBtn, subBtn, mulBtn, divBtn, remainBtn, equalBtn, backBtn, clearBtn, homeBtn, andBtn, orBtn, xorBtn, leftShiftBtn, rightShiftBtn;
+    private Button numBtn0, numBtn1, addBtn, subBtn, mulBtn, divBtn, remainBtn, equalBtn, backBtn, clearBtn, homeBtn,
+            andBtn, orBtn, xorBtn, leftShiftBtn, rightShiftBtn;
+
+    private ImageButton returnBtn;
 
     // 계산 결과 값 Image View 를 위한 Count
     private int count = 0;
@@ -58,37 +59,35 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
     public String te_resultNum = "";
     public String firstNumNo = "";
 
-    // ToolBar - MenuBar 표시
-    private Toolbar mainToolBar;
-    private ActionBarDrawerToggle drawerToggle;
-
     // Activity Life Cycle - OnCreate
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_arithmetics_change);
 
-
         // Button 및 View Item 설정
-        operator = findViewById(R.id.operator);
-        process = findViewById(R.id.process);
-        numBtn0 = findViewById(R.id.numBtn0);
-        numBtn1 = findViewById(R.id.numBtn1);
-        addBtn = findViewById(R.id.addBtn);
-        subBtn = findViewById(R.id.subBtn);
-        divBtn = findViewById(R.id.divBtn);
-        remainBtn = findViewById(R.id.remainBtn);
-        mulBtn = findViewById(R.id.mulBtn);
-        equalBtn = findViewById(R.id.equalBtn);
-        backBtn = findViewById(R.id.backBtn);
-        clearBtn = findViewById(R.id.clearBtn);
-        homeBtn = findViewById(R.id.homeBtn);
-        andBtn = findViewById(R.id.andBtn);
-        orBtn = findViewById(R.id.orBtn);
-        xorBtn = findViewById(R.id.xorBtn);
-        leftShiftBtn = findViewById(R.id.leftShiftBtn);
-        rightShiftBtn = findViewById(R.id.rightShiftBtn);
+        operator = (TextView) findViewById(R.id.operator);
+        process = (TextView) findViewById(R.id.process);
+        numBtn0 = (Button) findViewById(R.id.numBtn0);
+        numBtn1 = (Button) findViewById(R.id.numBtn1);
+        addBtn = (Button) findViewById(R.id.addBtn);
+        subBtn = (Button) findViewById(R.id.subBtn);
+        divBtn = (Button) findViewById(R.id.divBtn);
+        remainBtn = (Button) findViewById(R.id.remainBtn);
+        mulBtn = (Button) findViewById(R.id.mulBtn);
+        equalBtn = (Button) findViewById(R.id.equalBtn);
+        backBtn = (Button) findViewById(R.id.backBtn);
+        clearBtn = (Button) findViewById(R.id.clearBtn);
+        homeBtn = (Button) findViewById(R.id.homeBtn);
+        andBtn = (Button) findViewById(R.id.andBtn);
+        orBtn = (Button) findViewById(R.id.orBtn);
+        xorBtn = (Button) findViewById(R.id.xorBtn);
+        leftShiftBtn = (Button) findViewById(R.id.leftShiftBtn);
+        rightShiftBtn = (Button) findViewById(R.id.rightShiftBtn);
+//        returnBtn = (ImageButton) findViewById(R.id.back_btn);
 
         // 해당 Item OnclickListener 등록
+//        returnBtn.setOnClickListener(this);
         operator.setOnClickListener(this);
         process.setOnClickListener(this);
         numBtn0.setOnClickListener(this);
@@ -111,12 +110,11 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
         selectView = null;
 
         // Image View 입력을 위한 result 배열열
-        Integer[] res = {R.id.result0, R.id.result1, R.id.result2,
-               R.id.result3, R.id.result4, R.id.result5,
-                R.id.result6, R.id.result7, R.id.result8, R.id.result9};
+        Integer[] res = { R.id.result0, R.id.result1, R.id.result2, R.id.result3, R.id.result4, R.id.result5,
+                R.id.result6, R.id.result7, R.id.result8, R.id.result9 };
 
         for (int i = 0; i < binaryView.length; i++) {
-            binaryView[i] = findViewById(res[i]);
+            binaryView[i] = (ImageView) findViewById(res[i]);
         }
     }
 
@@ -126,36 +124,27 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
         select(view);
         resultNum = "";
         te_resultNum = "";
-
-        // 해당 버튼 클릭 시 수행 사항 설정
         switch (view.getId()) {
             case R.id.numBtn0:
-                if(firstResultNum != null) {
-                    clear();
-                }
-                // inputNum 변수에 Button Click 마다 값을 저장한 후 Image 초기화
-                inputNum = inputNum + "0";
-                // inputNum 저장 값을 parsing 후 String 배열에 추가
+                inputNum = inputNum + "0";                                                  // Button Click 마다 Image 초기화 진행을 위한 입력 값 저장
                 String[] zeroArray = inputNum.split("");
-                // String Array 생성시 [0]번 Index의 null 값 제거
-                String[] realZeroArray = deleteEmpty(zeroArray);
-                // 계산 값 우측 정렬을 위한 String 배열 Reverse
-                String[] reverseZeroArray = new String[realZeroArray.length];
+                String[] realZeroArray = deleteEmpty(zeroArray);                            // Array 생성시 [0] index 에 들어오는 null 값 제거
+                String[] reverseZeroArray = new String[realZeroArray.length];               // ImageView 표현을 위해 배열 Reverse 진행
 
                 for (int i = 0; i < realZeroArray.length; i++) {
                     String temp = realZeroArray[i];
                     reverseZeroArray[i] = realZeroArray[realZeroArray.length - i - 1];
                     realZeroArray[i] = temp;
                 }
-
-                // 입력 값 혹은 계산 값이 10자리 이상일 경우 Alert & Reset
-                if (realZeroArray.length > 10) {
+                Log.v("realZeroArray", "realZeroArray : " + Arrays.toString(realZeroArray));
+                Log.v("reverseZeroArray", "reverseZeroArray : " + Arrays.toString(reverseZeroArray));
+                if (realZeroArray.length > 10) {                                            // 입력 값이 10자리 넘어갈 경우 Alert
                     AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(Arithmetics_Change.this);
                     myAlertBuilder.setTitle("Alert");
                     myAlertBuilder.setMessage("Error.");
                     myAlertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            // Alert 창의 OK 버튼을 눌렸을 경우
+                            // OK 버튼을 눌렸을 경우
                             clear();
                             process.setText("");
                             inputNum = "";
@@ -164,7 +153,6 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                     });
                     myAlertBuilder.show();
                 } else {
-                    // 10자리 이하일 경우 String 배열을 가져와 0과 1 각각 구분하여 해당 Image 표현
                     for (count = 0; count < realZeroArray.length; count++) {
                         if (reverseZeroArray[count].equals("0")) {
                             binaryView[count].setImageResource(R.drawable.zero);
@@ -173,14 +161,10 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                         }
                     }
                 }
-                // 계산 과정 표현 EditText 에 Button 입력 값 추가
                 process.append("0");
                 break;
 
             case R.id.numBtn1:
-                if(firstResultNum != null) {
-                    clear();
-                }
                 inputNum = inputNum + "1";
                 String[] oneArray = inputNum.split("");
                 String[] realOneArray = deleteEmpty(oneArray);
@@ -190,12 +174,15 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                     reverseOneArray[i] = realOneArray[realOneArray.length - i - 1];
                     realOneArray[i] = temp;
                 }
+                Log.v("realOneArray", "realOneArray : " + Arrays.toString(realOneArray));
+                Log.v("reverseOneArray", "reverseOneArray : " + Arrays.toString(reverseOneArray));
                 if (realOneArray.length > 10) {
                     AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(Arithmetics_Change.this);
                     myAlertBuilder.setTitle("Alert");
                     myAlertBuilder.setMessage("Error.");
                     myAlertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
+                            // OK 버튼을 눌렸을 경우
                             clear();
                             process.setText("");
                             inputNum = "";
@@ -215,10 +202,17 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 process.append("1");
                 break;
 
-            // And 비트 연산자 입력
             case R.id.andBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
+                if(!firstNum.equals("")){
+                    if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
+                            || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 if (firstNum.equals("")) {                                                  // 이전 계산 결과 값이 없을 경우
                     if (firstResultNum.equals("")) {
                         firstNum = "0";
@@ -235,10 +229,17 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 clear();
                 break;
 
-            // Or 비트 연산자 입력
             case R.id.orBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
+                if(!firstNum.equals("")){
+                    if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
+                            || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 if (firstNum.equals("")) {
                     if (firstResultNum.equals("")) {
                         firstNum = "0";
@@ -255,10 +256,17 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 clear();
                 break;
 
-            // Xor 비트 연산자 입력
             case R.id.xorBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
+                if(!firstNum.equals("")){
+                    if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
+                            || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 if (firstNum.equals("")) {
                     if (firstResultNum.equals("")) {
                         firstNum = "0";
@@ -275,10 +283,17 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 clear();
                 break;
 
-            // + 연산자 입력
             case R.id.addBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
+                if(!firstNum.equals("")){
+                    if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
+                            || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 if (firstNum.equals("")) {
                     if (firstResultNum.equals("")) {
                         firstNum = "0";
@@ -295,10 +310,17 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 clear();
                 break;
 
-            // - 연산자 입력
             case R.id.subBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
+                if(!firstNum.equals("")){
+                    if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
+                            || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 if (firstNum.equals("")) {
                     if (firstResultNum.equals("")) {
                         firstNum = "0";
@@ -315,10 +337,17 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 clear();
                 break;
 
-            // * 연산자 입력
             case R.id.mulBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
+                if(!firstNum.equals("")){
+                    if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
+                            || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 if (firstNum.equals("")) {
                     if (firstResultNum.equals("")) {
                         firstNum = "0";
@@ -335,19 +364,20 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 clear();
                 break;
 
-            // / 연산자 입력
             case R.id.divBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if (firstNum.equals("")) {
-                    if (firstResultNum.equals("")) {
-                        firstNum = "0";
-                        firstNumNo = firstNum + "/";
-                    } else {
-                        firstNum = firstResultNum;
-                        firstNumNo = firstResultNum + "/";
+                if(!firstNum.equals("")){
+                    if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
+                            || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
                     }
-                    process.setText(firstNumNo);
+                }
+                if (firstNum.equals("")) {
+                    Toast.makeText(Arithmetics_Change.this, "It is impossible to divide 0", Toast.LENGTH_LONG).show();
+                    return;
                 } else {
                     process.append("/");
                 }
@@ -355,19 +385,20 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 clear();
                 break;
 
-            // 나머지 값 연산자 입력
             case R.id.remainBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if (firstNum.equals("")) {
-                    if (firstResultNum.equals("")) {
-                        firstNum = "0";
-                        firstNumNo = firstNum + "%";
-                    } else {
-                        firstNum = firstResultNum;
-                        firstNumNo = firstResultNum + "%";
+                if(!firstNum.equals("")){
+                    if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
+                            || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
                     }
-                    process.setText(firstNumNo);
+                }
+                if (firstNum.equals("")) {
+                    Toast.makeText(Arithmetics_Change.this, "It is impossible to divide 0", Toast.LENGTH_LONG).show();
+                    return;
                 } else {
                     process.append("%");
                 }
@@ -375,10 +406,17 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 clear();
                 break;
 
-            // 쉬프트 연산자 입력
             case R.id.leftShiftBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
+                if(!firstNum.equals("")){
+                    if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
+                            || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 if (firstNum.equals("")) {
                     if (firstResultNum.equals("")) {
                         firstNum = "0";
@@ -395,10 +433,17 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 clear();
                 break;
 
-            // 쉬프트 연산자 입력
             case R.id.rightShiftBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
+                if(!firstNum.equals("")){
+                    if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
+                            || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 if (firstNum.equals("")) {
                     if (firstResultNum.equals("")) {
                         firstNum = "0";
@@ -415,7 +460,6 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 clear();
                 break;
 
-            // 이전 입력 내용 삭제
             case R.id.backBtn:
                 inputNum = "";
                 int size = process.getText().length();
@@ -438,7 +482,7 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.homeBtn:
-                Intent homeIntent = new Intent(getApplicationContext(), com.example.calculato.Arithmetics.class);
+                Intent homeIntent = new Intent(getApplicationContext(), Arithmetics.class);
                 homeIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);     // Activity 전환 시 효과 제거
                 startActivity(homeIntent);
                 break;
@@ -466,6 +510,46 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 }
 
                 Log.v("secondNum", "secondNum = " + secondNum);
+
+                if(!process.getText().toString().equals("")){
+                    if(operator.getText().toString().equals("/")){
+                        Log.v("Test","Test = " + !process.getText().toString().equals(""));
+                        Log.v("Test","Test = " + operator.getText().toString().equals("/"));
+                        Log.v("Test","Test = " + secondNum.equals("0"));
+                        if(secondNum.equals("0")){
+                            clear();
+                            process.setText("");
+                            operator.setText("");
+                            inputNum = "";
+                            firstResultNum = "";
+                            Toast.makeText(Arithmetics_Change.this, "It is impossible to divide 0", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                    } else if(operator.getText().toString().equals("%")){
+                        Log.v("Test","Test = " + !process.getText().toString().equals(""));
+                        Log.v("Test","Test = " + operator.getText().toString().equals("%"));
+                        Log.v("Test","Test = " + secondNum.equals("0"));
+                        if(secondNum.equals("0")){
+                            clear();
+                            process.setText("");
+                            operator.setText("");
+                            inputNum = "";
+                            firstResultNum = "";
+                            Toast.makeText(Arithmetics_Change.this, "It is impossible to divide 0", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                    } else if(operator.getText().toString().equals("")){
+                        Log.v("Test","Test = " + !process.getText().toString().equals(""));
+                        Log.v("Test","Test = " + operator.getText().toString().equals("%"));
+                            clear();
+                            process.setText("");
+                            operator.setText("");
+                            inputNum = "";
+                            firstResultNum = "";
+                            Toast.makeText(Arithmetics_Change.this, "Please Input Second Number", Toast.LENGTH_LONG).show();
+                            return;
+                    }
+                }
 
                 if (firstResultNum.equals("")) {
                     firstNum = processArray[0];
@@ -534,18 +618,25 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 } else if (operaTor.equals(">>")) {
                     result = firstBinary >> secondBinary;
                 }
-                //10진수를 2진수로 바꾸는 메소드
-                toBinary(result);
-
+                // 10진수를 2진수로 바꾸는 메소드
+                toBinary(result);                                //10진수를 2진수로 바꾸는 메소드
+                Log.v("resultNum", "resultNum = " + resultNum);
+                Log.v("firstResultNum", "firstResultNum = " + firstResultNum);
                 // 계산 결과 값 ImageView 표현(2진수)
                 String[] binaryArray = resultNum.split("");
 
+                Log.v("binaryArray", "binaryArray : " + Arrays.toString(binaryArray));
                 // 배열의 Empty Data 지우는 함수 호출
                 String[] resultArray = deleteEmpty(binaryArray);
+                Log.v("resultArray", "resultArray : " + Arrays.toString(resultArray));
+                Log.v("resultArrayLength", "resultArrayLength : " + resultArray.length);
+
                 String[] te_binaryArray = te_resultNum.split("");
 
+                Log.v("te_binaryArray", "te_binaryArray : " + Arrays.toString(te_binaryArray));
                 // 배열의 Empty Data 지우는 함수 호출
                 String[] te_resultArray = deleteEmpty(te_binaryArray);
+                Log.v("te_resultArray", "te_resultArray : " + Arrays.toString(te_resultArray));
 
                 // 계산 값 10자리 넘어갈 때, Reset
                 if (resultArray.length > 10) {
@@ -579,7 +670,7 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
                 operator.setText(resultOperator);
                 process.setText("");
                 count = 0;
-                inputNum = "";
+                inputNum = resultNum;
                 break;
         }
     }
@@ -596,10 +687,11 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
     @Override
     protected void onPause() {
         super.onPause();
-        overridePendingTransition(0, 0);            // 새로 나타나는 화면이 취해야 하는 Animation, 현재 화면이 취하는 Animation
+        overridePendingTransition(0, 0); // 새로 나타나는 화면이 취해야 하는 Animation, 현재 화면이 취하는 Animation
     }
 
     protected void onStop() {
+        finish();
         super.onStop();
     }
 
@@ -658,8 +750,25 @@ public class Arithmetics_Change extends AppCompatActivity implements View.OnClic
     }
 
     public static String[] deleteEmpty(final String[] array) {              // String[]의 Empty Data 삭제
-        List<String> list = new ArrayList<>(Arrays.asList(array));
+        List<String> list = new ArrayList<String>(Arrays.asList(array));
         list.removeAll(Collections.singleton(""));                          // list 내부 Data "" 모두 제거
         return list.toArray(new String[list.size()]);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(TAG, "onBackPressed()");
+        moveToHome();
+    }
+
+    private void moveToHome() {
+        if (LOGD)
+            Log.d(TAG, "moveToHome()");
+
+        Intent intent = new Intent(getApplicationContext(), Arithmetics.class);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
     }
 }
