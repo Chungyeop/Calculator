@@ -30,11 +30,14 @@ public class CalculateHelper {
             } else {
                 if (flag) {
                     inputList.add(number);
-                    if(data.equals("-")){
+                    if (data.equals("-")) {
                         number = -1;
-                    }else{
+                    } else {
                         number = 1;
                     }
+                }
+                if (data.equals("-")) {
+                    number = -1;
                 }
                 flag = false;
                 inputList.add(data);
@@ -141,7 +144,7 @@ public class CalculateHelper {
             check = str.charAt(i);
             if (check < 48 || check > 58) {
                 if (check != '.') {
-                    if(str.length()<2){
+                    if (str.length() < 2) {
                         return false;
                     }
                 }
@@ -149,6 +152,7 @@ public class CalculateHelper {
         }
         return true;
     }
+
     public boolean checkError(String str) {
         char check;
 
@@ -195,25 +199,25 @@ public class CalculateHelper {
                 }
             }
             if (resultList.get(i).equals("*") || resultList.get(i).equals("/")) {               // * , / 만 분리
-                if(i>1){
-                    if(resultList.get(i-2).equals("+") || resultList.get(i-2).equals("-")){
-                        muldiv.add(resultList.get(i-2));
+                if (i > 1) {
+                    if (resultList.get(i - 2).equals("+") || resultList.get(i - 2).equals("-")) {
+                        muldiv.add(resultList.get(i - 2));
                     }
                 }
-                if(!(resultList.get(i - 1).equals("(") || resultList.get(i - 1).equals(")"))){
+                if (!(resultList.get(i - 1).equals("(") || resultList.get(i - 1).equals(")"))) {
                     muldiv.add(resultList.get(i - 1));
                 }
                 boolean vo = true;
                 while (vo) {
-                    if(i < resultList.size()-1){
-                        if(resultList.get(i+1).equals("(")){
+                    if (i < resultList.size() - 1) {
+                        if (resultList.get(i + 1).equals("(")) {
                             break;
                         }
                     }
                     if (resultList.get(i).equals("+") || resultList.get(i).equals("-") || resultList.get(i).equals("(")) { //덧셈 뺄셈 괄호열기 부호 나올때까지 다 남아라
                         vo = false;
                         if (resultList.get(i).equals("(")) {
-                            i = i-2;
+                            i = i - 2;
                         }
                     } else {
                         muldiv.add(resultList.get(i));
@@ -227,15 +231,15 @@ public class CalculateHelper {
                     break;
                 }
             }
-            if(addsub.size() == 0 && (resultList.get(1).equals("+") || resultList.get(1).equals("-"))){
+            if (addsub.size() == 0 && (resultList.get(1).equals("+") || resultList.get(1).equals("-"))) {
                 addsub.add(resultList.get(0));
                 count++;
             }
             if (resultList.get(i).equals("+") || resultList.get(i).equals("-")) {
                 boolean bo = true;
                 while (bo) {
-                    if(i < resultList.size()-1){
-                        if(resultList.get(i+1).equals("(")){
+                    if (i < resultList.size() - 1) {
+                        if (resultList.get(i + 1).equals("(")) {
                             break;
                         }
                     }
@@ -247,7 +251,7 @@ public class CalculateHelper {
                         } else {
                             addsub.remove(count);                           // * , / 가 나오면 그 전 숫자와 부호를 지워라 2 (+ 5) *
                             addsub.remove(count - 1);
-                            count = count -2;
+                            count = count - 2;
                         }
                         i--;
                     } else {
@@ -264,67 +268,67 @@ public class CalculateHelper {
         if (bracket.size() != 0) {                              //괄호 배열 정렬
             ArrayList<String> resultList5 = new ArrayList<>();              //괄호 곱셈 나눗셈
             ArrayList<String> resultList6 = new ArrayList<>();              //괄호 덧셈 뺄셈
-            if(bracket.contains("*") || bracket.contains("/")){                     //괄호 안에서 우선순위 적용해서 곱셈나눗셈, 뺄셈 덧셈 따로 나누기
-                for(int i = 0; i<bracket.size(); i++){
-                    if(bracket.get(i).equals("*") || bracket.get(i).equals("/")){
+            if (bracket.contains("*") || bracket.contains("/")) {                     //괄호 안에서 우선순위 적용해서 곱셈나눗셈, 뺄셈 덧셈 따로 나누기
+                for (int i = 0; i < bracket.size(); i++) {
+                    if (bracket.get(i).equals("*") || bracket.get(i).equals("/")) {
                         resultList5.add(bracket.get(i));
-                        if(checkNumber(bracket.get(i+1))){
-                            resultList5.add(bracket.get(i+1));
-                        }else{
-                            resultList5.add(bracket.get(i+2));
+                        if (checkNumber(bracket.get(i + 1))) {
+                            resultList5.add(bracket.get(i + 1));
+                        } else {
+                            resultList5.add(bracket.get(i + 2));
                         }
                     }
-                    if(bracket.get(i).equals("+") || bracket.get(i).equals("-")){
-                        if(bracket.get(i+2).equals("*") || bracket.get(i+2).equals("/")){
-                            resultList5.add(bracket.get(i+2));
-                            resultList5.add(bracket.get(i+1));
-                        }else if(bracket.get(i+1).equals("(")){
+                    if (bracket.get(i).equals("+") || bracket.get(i).equals("-")) {
+                        if (bracket.get(i + 2).equals("*") || bracket.get(i + 2).equals("/")) {
+                            resultList5.add(bracket.get(i + 2));
+                            resultList5.add(bracket.get(i + 1));
+                        } else if (bracket.get(i + 1).equals("(")) {
                             resultList6.add(bracket.get(i));
                             resultList6.add(bracket.get(i + 2));
-                        }else{
+                        } else {
                             resultList6.add(bracket.get(i));
                             resultList6.add(bracket.get(i + 1));
                         }
                     }
-                    if(i==1){                       //시작 부호[2]로 첫 숫자[1]를 어느 배열에 넣을지 정한다. [0]은 괄호
-                        if(bracket.get(2).equals("*") || bracket.get(2).equals("/")){
+                    if (i == 1) {                       //시작 부호[2]로 첫 숫자[1]를 어느 배열에 넣을지 정한다. [0]은 괄호
+                        if (bracket.get(2).equals("*") || bracket.get(2).equals("/")) {
                             resultList5.add(bracket.get(1));
-                        }else{
+                        } else {
                             resultList6.add(bracket.get(1));
                         }
                     }
                 }
                 String test_separ = separation(resultList5);
-                if(resultList6.get(0).equals("+") || resultList6.get(0).equals("-")){
+                if (resultList6.get(0).equals("+") || resultList6.get(0).equals("-")) {
                     sin = resultList6.get(0);
                     resultList6.remove(0);
                 }
                 String test_separa = separation(resultList6);
-                bracketMuldivStr = "( "+ test_separ.substring(3);
+                bracketMuldivStr = "( " + test_separ.substring(3);
                 bracketAddsubStr = test_separa + " )";
                 bracketStr = bracketMuldivStr + bracketAddsubStr;
-            }else{
+            } else {
                 bracketStr = merge(bracket);
-                bracketStr = "( "+ bracketStr.substring(3) + " )";                //괄호안에 곱셈 나눗셈이 없을 경우 숫자 우선순위만 적용한다.
+                bracketStr = "( " + bracketStr.substring(3) + " )";                //괄호안에 곱셈 나눗셈이 없을 경우 숫자 우선순위만 적용한다.
             }
         }
         if (muldiv.size() != 0) {                       //곱셈 나눗셈 배열 정렬
-            if(!checkNumber(muldiv.get(0))){
+            if (!checkNumber(muldiv.get(0))) {
                 sin = muldiv.get(0);
                 muldiv.remove(0);
             }
             muldivStr = separation(muldiv);             //중간에 덧셈이 끼어있는 곱셈 나눗셈 묶어서 분류
         }
-        if(addsub.size() != 0){                     //덧셈 뺄셈 배열 정렬
+        if (addsub.size() != 0) {                     //덧셈 뺄셈 배열 정렬
             addsubStr = merge(addsub);
         }
         String result = "";
         result = bracketStr + muldivStr + addsubStr;
-        if(!checkNumber(String.valueOf(result.charAt(0)))){
-            if(result.charAt(1) == '-'){
+        if (!checkNumber(String.valueOf(result.charAt(0)))) {
+            if (result.charAt(1) == '-') {
                 result = result.substring(3);
                 result = "-" + result;
-            }else if(result.charAt(0) != '('){
+            } else if (result.charAt(0) != '(') {
                 result = result.substring(3);
             }
             result.replace(" * - ", " * -");
@@ -333,22 +337,22 @@ public class CalculateHelper {
         return result;
     }
 
-    public String separation(ArrayList dm){                 //곱셈 나눗셈 한 묶음씩 묶고 재배열
+    public String separation(ArrayList dm) {                 //곱셈 나눗셈 한 묶음씩 묶고 재배열
         ArrayList<String> test1 = new ArrayList<>();
         ArrayList<String> test_arr = new ArrayList<>();
         String separation = "";
         if (dm.size() != 0) {               //곱셈 나눗셈 배열 정렬
             int count = 0;
-            for(int i =0; i<dm.size(); i++){
+            for (int i = 0; i < dm.size(); i++) {
                 test_arr.add(String.valueOf(dm.get(i)));
-                if(dm.get(i).equals("+") || dm.get(i).equals("-")){
+                if (dm.get(i).equals("+") || dm.get(i).equals("-")) {
                     test_arr.remove(count);
-                    test1.add( " "+ sin +" "+ merge(test_arr).substring(3));
+                    test1.add(" " + sin + " " + merge(test_arr).substring(3));
                     sin = String.valueOf(dm.get(i));
                     test_arr.clear();
                     count = 0;
-                }else if(i == dm.size()-1){
-                    test1.add( " "+ sin +" "+ merge(test_arr).substring(3));
+                } else if (i == dm.size() - 1) {
+                    test1.add(" " + sin + " " + merge(test_arr).substring(3));
                     test_arr.clear();
                 }
                 count++;
@@ -356,19 +360,19 @@ public class CalculateHelper {
 
             String[] test_str = new String[test1.size()];   // 곱셈 나눗셈 묶음
 
-            for(int i=0; i<test1.size(); i++){
+            for (int i = 0; i < test1.size(); i++) {
                 test_str[i] = test1.get(i);
             }
             int[] test_int = new int[test_str.length];     //각 묶음에서 가장 큰 수만 따로 모아서 비교
-            for(int i =0; i<test_str.length; i++){
-                if(test_str[i].charAt(1) == '-'){
+            for (int i = 0; i < test_str.length; i++) {
+                if (test_str[i].charAt(1) == '-') {
                     test_int[i] = Integer.parseInt("-" + test_str[i].charAt(3));
-                }else{
-                    test_int[i] = Integer.parseInt(test_str[i].substring(3,4));
+                } else {
+                    test_int[i] = Integer.parseInt(test_str[i].substring(3, 4));
                 }
             }
-            for(int i =0; i<test_str.length; i++) {
-                for (int k = 0; k <test_str.length; k++) {
+            for (int i = 0; i < test_str.length; i++) {
+                for (int k = 0; k < test_str.length; k++) {
                     if (test_int[i] > test_int[k]) {
                         int b = test_int[i];
                         test_int[i] = test_int[k];
@@ -379,7 +383,7 @@ public class CalculateHelper {
                     }
                 }
             }
-            for(int i =0; i<test_str.length; i++){
+            for (int i = 0; i < test_str.length; i++) {
                 separation += test_str[i];
             }
         }
@@ -388,21 +392,21 @@ public class CalculateHelper {
     }
 
 
-    public String merge(ArrayList value){
+    public String merge(ArrayList value) {
         String[] numBerStr = new String[value.size()];        // 양수 음수 둘다 넣은 string
         Integer[] numBer = new Integer[value.size()];              // numberStr에 넣은 양수 음수를 int로 넘겨받음
         ArrayList<String> markNum = new ArrayList<>();        //부호 + 숫자가 함께 들어있는 배열
         Integer[] index = new Integer[value.size()];          //우선순위로 인해 바뀐 순서대로 string에 넣을 용도
-        int count =0;
-        for(int i =0; i<value.size(); i++){
-            if(!(value.get(i).equals("(") || value.get(i).equals(")"))){
-                if(!(value.get(i).equals("+") || value.get(i).equals("*") || value.get(i).equals("/"))){
-                    if(value.get(i).equals("-")){
+        int count = 0;
+        for (int i = 0; i < value.size(); i++) {
+            if (!(value.get(i).equals("(") || value.get(i).equals(")"))) {
+                if (!(value.get(i).equals("+") || value.get(i).equals("*") || value.get(i).equals("/"))) {
+                    if (value.get(i).equals("-")) {
                         index[count] = count;
-                        numBerStr[count] = "-" + value.get(i+1);
+                        numBerStr[count] = "-" + value.get(i + 1);
                         count++;
                         i++;
-                    }else{
+                    } else {
                         index[count] = count;
                         numBerStr[count] = String.valueOf(value.get(i));
                         count++;
@@ -411,11 +415,11 @@ public class CalculateHelper {
             }
         }
         int count1 = 0;
-        if(checkNumber(String.valueOf(value.get(count1)))) {     //첫 부호 정하기
+        if (checkNumber(String.valueOf(value.get(count1)))) {     //첫 부호 정하기
             if (value.size() > 1) {
-                if(value.get(count1 + 1).equals("*") || value.get(count1 + 1).equals("/")) {
+                if (value.get(count1 + 1).equals("*") || value.get(count1 + 1).equals("/")) {
                     markNum.add(" " + value.get(count1 + 1) + " " + value.get(count1));
-                }else{
+                } else {
                     markNum.add(" + " + value.get(count1));
                 }
             } else {
@@ -423,25 +427,25 @@ public class CalculateHelper {
             }
         }
         count1++;
-        while(count1 != value.size()){
+        while (count1 != value.size()) {
             if (value.get(count1).equals("(")) {
                 markNum.add(" + " + value.get(count1 + 1));
                 count1++;
-            }else if (checkNumber(String.valueOf(value.get(count1)))) {
-                if(value.get(count1 - 1).equals("(")){
+            } else if (checkNumber(String.valueOf(value.get(count1)))) {
+                if (value.get(count1 - 1).equals("(")) {
                     markNum.add(" + " + value.get(count1));
-                }else{
-                    markNum.add(" " + value.get(count1 - 1) + " "+value.get(count1));
+                } else {
+                    markNum.add(" " + value.get(count1 - 1) + " " + value.get(count1));
                 }
             }
             count1++;
         }
-        for(int i =0; i<count; i++){
+        for (int i = 0; i < count; i++) {
             numBer[i] = Integer.parseInt(numBerStr[i]);
         }
-        for(int i =0; i<count; i++){
-            for(int k =0; k<count; k++){
-                if(numBer[i]>numBer[k]) {
+        for (int i = 0; i < count; i++) {
+            for (int k = 0; k < count; k++) {
+                if (numBer[i] > numBer[k]) {
                     int a = numBer[i];
                     numBer[i] = numBer[k];
                     numBer[k] = a;
@@ -452,7 +456,7 @@ public class CalculateHelper {
             }
         }
         String str = "";                        //리턴 값
-        for(int i =0; i<count; i++){
+        for (int i = 0; i < count; i++) {
             str += markNum.get(index[i]);
         }
         return str;

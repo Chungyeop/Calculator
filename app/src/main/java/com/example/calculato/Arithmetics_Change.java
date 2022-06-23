@@ -110,8 +110,8 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
         selectView = null;
 
         // Image View 입력을 위한 result 배열열
-        Integer[] res = { R.id.result0, R.id.result1, R.id.result2, R.id.result3, R.id.result4, R.id.result5,
-                R.id.result6, R.id.result7, R.id.result8, R.id.result9 };
+        Integer[] res = {R.id.result0, R.id.result1, R.id.result2, R.id.result3, R.id.result4, R.id.result5,
+                R.id.result6, R.id.result7, R.id.result8, R.id.result9};
 
         for (int i = 0; i < binaryView.length; i++) {
             binaryView[i] = (ImageView) findViewById(res[i]);
@@ -142,12 +142,19 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
                     AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(Arithmetics_Change.this);
                     myAlertBuilder.setTitle("Alert");
                     myAlertBuilder.setMessage("Error.");
+                    clear();
+                    process.setText("");
+                    operator.setText("");
+                    inputNum = "";
+                    firstResultNum = "";
                     myAlertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // OK 버튼을 눌렸을 경우
                             clear();
                             process.setText("");
+                            operator.setText("");
                             inputNum = "";
+                            firstResultNum = "";
                             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -180,12 +187,19 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
                     AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(Arithmetics_Change.this);
                     myAlertBuilder.setTitle("Alert");
                     myAlertBuilder.setMessage("Error.");
+                    clear();
+                    process.setText("");
+                    operator.setText("");
+                    inputNum = "";
+                    firstResultNum = "";
                     myAlertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // OK 버튼을 눌렸을 경우
                             clear();
                             process.setText("");
+                            operator.setText("");
                             inputNum = "";
+                            firstResultNum = "";
                             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -205,11 +219,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
             case R.id.andBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if(!firstNum.equals("")){
+                if (!firstNum.equals("")) {
                     if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
                             || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
-                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')) {
                         Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                if (!firstNum.equals("")) {
+                    operaTor = operator.getText().toString();
+                    if (!operaTor.equals("")) {
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have two Operator", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -232,11 +253,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
             case R.id.orBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if(!firstNum.equals("")){
+                if (!firstNum.equals("")) {
                     if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
                             || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
-                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')) {
                         Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                if (!firstNum.equals("")) {
+                    operaTor = operator.getText().toString();
+                    if (!operaTor.equals("")) {
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have two Operator", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -259,11 +287,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
             case R.id.xorBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if(!firstNum.equals("")){
+                if (!firstNum.equals("")) {
                     if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
                             || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
-                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')) {
                         Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                if (!firstNum.equals("")) {
+                    operaTor = operator.getText().toString();
+                    if (!operaTor.equals("")) {
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have two Operator", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -286,11 +321,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
             case R.id.addBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if(!firstNum.equals("")){
+                if (!firstNum.equals("")) {
                     if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
                             || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
-                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')) {
                         Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                if (!firstNum.equals("")) {
+                    operaTor = operator.getText().toString();
+                    if (!operaTor.equals("")) {
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have two Operator", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -313,11 +355,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
             case R.id.subBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if(!firstNum.equals("")){
+                if (!firstNum.equals("")) {
                     if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
                             || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
-                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')) {
                         Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                if (!firstNum.equals("")) {
+                    operaTor = operator.getText().toString();
+                    if (!operaTor.equals("")) {
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have two Operator", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -340,11 +389,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
             case R.id.mulBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if(!firstNum.equals("")){
+                if (!firstNum.equals("")) {
                     if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
                             || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
-                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')) {
                         Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                if (!firstNum.equals("")) {
+                    operaTor = operator.getText().toString();
+                    if (!operaTor.equals("")) {
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have two Operator", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -367,11 +423,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
             case R.id.divBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if(!firstNum.equals("")){
+                if (!firstNum.equals("")) {
                     if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
                             || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
-                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')) {
                         Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                if (!firstNum.equals("")) {
+                    operaTor = operator.getText().toString();
+                    if (!operaTor.equals("")) {
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have two Operator", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -388,11 +451,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
             case R.id.remainBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if(!firstNum.equals("")){
+                if (!firstNum.equals("")) {
                     if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
                             || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
-                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')) {
                         Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                if (!firstNum.equals("")) {
+                    operaTor = operator.getText().toString();
+                    if (!operaTor.equals("")) {
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have two Operator", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -409,11 +479,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
             case R.id.leftShiftBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if(!firstNum.equals("")){
+                if (!firstNum.equals("")) {
                     if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
                             || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
-                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')) {
                         Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                if (!firstNum.equals("")) {
+                    operaTor = operator.getText().toString();
+                    if (!operaTor.equals("")) {
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have two Operator", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -436,11 +513,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
             case R.id.rightShiftBtn:
                 inputNum = "";
                 firstNum = process.getText().toString();
-                if(!firstNum.equals("")){
+                if (!firstNum.equals("")) {
                     if ((firstNum.charAt(firstNum.length() - 1) == '+') || (firstNum.charAt(firstNum.length() - 1) == '-') || (firstNum.charAt(firstNum.length() - 1) == '*')
                             || (firstNum.charAt(firstNum.length() - 1) == '/') || (firstNum.charAt(firstNum.length() - 1) == '%') || (firstNum.charAt(firstNum.length() - 1) == 'D')
-                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')){
+                            || (firstNum.charAt(firstNum.length() - 1) == 'R') || (firstNum.charAt(firstNum.length() - 1) == '<') || (firstNum.charAt(firstNum.length() - 1) == '>')) {
                         Toast.makeText(Arithmetics_Change.this, "It is impossible to have a operator after a operator", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+                if (!firstNum.equals("")) {
+                    operaTor = operator.getText().toString();
+                    if (!operaTor.equals("")) {
+                        Toast.makeText(Arithmetics_Change.this, "It is impossible to have two Operator", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -461,12 +545,31 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
                 break;
 
             case R.id.backBtn:
-                inputNum = "";
-                int size = process.getText().length();
-                if (count > 0) {
-                    binaryView[count - 1].setImageResource(0);
-                    count--;
+                for (count = 0; count < 10; count++){
+                    binaryView[count].setImageResource(0);
                 }
+                if (inputNum.length() > 1) {
+                    inputNum = inputNum.substring(0, inputNum.length() - 1);
+                }
+                String[] backArray = inputNum.split("");
+                String[] realBackArray = deleteEmpty(backArray);
+                String[] reverseBackArray = new String[realBackArray.length];
+                for (int i = 0; i < realBackArray.length; i++) {
+                    String temp = realBackArray[i];
+                    reverseBackArray[i] = realBackArray[realBackArray.length - i - 1];
+                    realBackArray[i] = temp;
+                }
+                Log.v("realBackArray", "realBackArray : " + Arrays.toString(realBackArray));
+                Log.v("reverseBackArray", "reverseBackArray : " + Arrays.toString(reverseBackArray));
+                for (count = 0; count < realBackArray.length; count++) {
+                    if (reverseBackArray[count].equals("0")) {
+                        binaryView[count].setImageResource(R.drawable.zero);
+                    } else {
+                        binaryView[count].setImageResource(R.drawable.one);
+                    }
+                }
+
+                int size = process.getText().length();
                 if (size >= 1) {
                     process.setText(process.getText().toString().substring(0, size - 1));
                 }
@@ -511,12 +614,12 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
 
                 Log.v("secondNum", "secondNum = " + secondNum);
 
-                if(!process.getText().toString().equals("")){
-                    if(operator.getText().toString().equals("/")){
-                        Log.v("Test","Test = " + !process.getText().toString().equals(""));
-                        Log.v("Test","Test = " + operator.getText().toString().equals("/"));
-                        Log.v("Test","Test = " + secondNum.equals("0"));
-                        if(secondNum.equals("0")){
+                if (!process.getText().toString().equals("")) {
+                    if (operator.getText().toString().equals("/")) {
+                        Log.v("Test", "Test = " + !process.getText().toString().equals(""));
+                        Log.v("Test", "Test = " + operator.getText().toString().equals("/"));
+                        Log.v("Test", "Test = " + secondNum.equals("0"));
+                        if (secondNum.equals("0")) {
                             clear();
                             process.setText("");
                             operator.setText("");
@@ -525,11 +628,11 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
                             Toast.makeText(Arithmetics_Change.this, "It is impossible to divide 0", Toast.LENGTH_LONG).show();
                             return;
                         }
-                    } else if(operator.getText().toString().equals("%")){
-                        Log.v("Test","Test = " + !process.getText().toString().equals(""));
-                        Log.v("Test","Test = " + operator.getText().toString().equals("%"));
-                        Log.v("Test","Test = " + secondNum.equals("0"));
-                        if(secondNum.equals("0")){
+                    } else if (operator.getText().toString().equals("%")) {
+                        Log.v("Test", "Test = " + !process.getText().toString().equals(""));
+                        Log.v("Test", "Test = " + operator.getText().toString().equals("%"));
+                        Log.v("Test", "Test = " + secondNum.equals("0"));
+                        if (secondNum.equals("0")) {
                             clear();
                             process.setText("");
                             operator.setText("");
@@ -538,16 +641,16 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
                             Toast.makeText(Arithmetics_Change.this, "It is impossible to divide 0", Toast.LENGTH_LONG).show();
                             return;
                         }
-                    } else if(operator.getText().toString().equals("")){
-                        Log.v("Test","Test = " + !process.getText().toString().equals(""));
-                        Log.v("Test","Test = " + operator.getText().toString().equals("%"));
-                            clear();
-                            process.setText("");
-                            operator.setText("");
-                            inputNum = "";
-                            firstResultNum = "";
-                            Toast.makeText(Arithmetics_Change.this, "Please Input Second Number", Toast.LENGTH_LONG).show();
-                            return;
+                    } else if (operator.getText().toString().equals("")) {
+                        Log.v("Test", "Test = " + !process.getText().toString().equals(""));
+                        Log.v("Test", "Test = " + operator.getText().toString().equals("%"));
+                        clear();
+                        process.setText("");
+                        operator.setText("");
+                        inputNum = "";
+                        firstResultNum = "";
+                        Toast.makeText(Arithmetics_Change.this, "Please Input Second Number", Toast.LENGTH_LONG).show();
+                        return;
                     }
                 }
 
@@ -572,12 +675,18 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
                         AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(Arithmetics_Change.this);
                         myAlertBuilder.setTitle("Alert");
                         myAlertBuilder.setMessage("Cannot Calculate Negative Data.");
+                        clear();
+                        process.setText("");
+                        operator.setText("");
+                        inputNum = "";
+                        firstResultNum = "";
                         myAlertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // OK 버튼을 눌렸을 경우
                                 clear();
                                 process.setText("");
                                 operator.setText("");
+                                inputNum = "";
                                 firstResultNum = "";
                                 Toast.makeText(getApplicationContext(), "Negative Number", Toast.LENGTH_SHORT).show();
                             }
@@ -593,6 +702,11 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
                         AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(Arithmetics_Change.this);
                         myAlertBuilder.setTitle("Alert");
                         myAlertBuilder.setMessage("Cannot Calculate Double Data.");
+                        clear();
+                        process.setText("");
+                        operator.setText("");
+                        inputNum = "";
+                        firstResultNum = "";
                         myAlertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // OK 버튼을 눌렸을 경우
@@ -600,6 +714,7 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
                                 clear();
                                 process.setText("");
                                 operator.setText("");
+                                inputNum = "";
                                 firstResultNum = "";
                             }
                         });
@@ -643,6 +758,11 @@ public class Arithmetics_Change extends Activity implements View.OnClickListener
                     AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(Arithmetics_Change.this);
                     myAlertBuilder.setTitle("Alert");
                     myAlertBuilder.setMessage("Cannot Calculate.");
+                    clear();
+                    process.setText("");
+                    operator.setText("");
+                    inputNum = "";
+                    firstResultNum = "";
                     myAlertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // OK 버튼을 눌렸을 경우

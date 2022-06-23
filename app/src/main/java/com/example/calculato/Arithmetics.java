@@ -181,8 +181,8 @@ public class Arithmetics extends Activity { // 터치따로
         returnBtn = (ImageButton) findViewById(R.id.back_btn);
 
         // number ClickListener
-        Integer[] btn = { R.id.numBtn0, R.id.numBtn1, R.id.numBtn2, R.id.numBtn3, R.id.numBtn4, R.id.numBtn5,
-                R.id.numBtn6, R.id.numBtn7, R.id.numBtn8, R.id.numBtn9 };
+        Integer[] btn = {R.id.numBtn0, R.id.numBtn1, R.id.numBtn2, R.id.numBtn3, R.id.numBtn4, R.id.numBtn5,
+                R.id.numBtn6, R.id.numBtn7, R.id.numBtn8, R.id.numBtn9};
         // 제 3 클래스로 이벤트 구현
         com.example.calculato.LongClickEvent longClickEvent = new com.example.calculato.LongClickEvent(this);
         com.example.calculato.TouchEvent touchEvent = new com.example.calculato.TouchEvent(this);
@@ -245,6 +245,27 @@ public class Arithmetics extends Activity { // 터치따로
                     onBackPressed();
                     break;
                 case R.id.numBtn0:
+                    if (!edit_process.getText().toString().equals("")) {
+                        if (edit_process.getText().toString().length() > 2) {
+                            if (edit_process.getText().toString().substring(edit_process.getText().toString().length() - 2).equals("/ ")) {
+                                Log.v("Test", "Test = " + !edit_process.getText().toString().equals(""));
+                                Log.v("Test", "Test = " + edit_process.getText().toString().substring(edit_process.getText().toString().length() - 2).equals("/ "));
+
+                                edit_process.setText("");
+                                edit_result.setText("");
+                                edit_arith.setText("");
+                                isDot = false;
+                                isBracket = false;
+
+                                calculateHelper = new com.example.calculato.CalculateHelper();
+
+                                isPreview = false;
+                                Toast.makeText(Arithmetics.this, "It is impossible to divide 0", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                        }
+                    }
+
                     edit_process.append("0");
                     break;
                 case R.id.numBtn1:
